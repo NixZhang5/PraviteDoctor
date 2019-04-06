@@ -2,10 +2,13 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
+import Home from '@/pages/Home';
+
 class App extends React.Component {
     render() {
         return (
             <div>
+                <Home />
                 <h1>App</h1>
                 <ul>
                     <li><Link to="/about">About</Link></li>
@@ -21,7 +24,7 @@ class About extends React.Component {
     render() {
         return (
             <div>
-                <h1>Articles</h1>
+                <h1>About</h1>
                 {this.props.children}
             </div>
         );
@@ -43,8 +46,8 @@ render((
     <BrowserRouter>
         <div>
             <Route path="/" component={App} />
-            <Route path="/about" component={About} />
-            <Route path="/articles" component={Articles} />
+            {/* <Route path="/about" component={About} />
+            <Route path="/articles" component={Articles} /> */}
         </div>
     </BrowserRouter>
 ), document.getElementById('root'))
