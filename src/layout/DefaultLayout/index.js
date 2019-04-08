@@ -19,12 +19,12 @@ export default class DefaultLayout extends React.Component {
       <Router>
         <Layout>
           <Sider style={{
-            overflow: 'auto', height: '100vh', position: 'fixed', left: 0,
+            overflow: 'auto', height: '100vh', position: 'fixed', left: 0, background: '#FFF'
           }}>
             <Menu
               onClick={this.handleClick}
               defaultSelectedKeys={["iOS"]}
-              mode="vertical"
+              mode="inline"
               theme="light"
             >
               <Menu.Item key="iOS"><Link to="/catalogs/iOS"><span>iOS</span></Link></Menu.Item>
@@ -33,8 +33,10 @@ export default class DefaultLayout extends React.Component {
             </Menu>
           </Sider>
 
-          <Layout>
-            <Header style={{ background: '#fff', padding: 0 }} />
+          <Layout style={{ marginLeft: 230 }}>
+            <Header style={{ background: '#F0F2F5', padding: 0 }}>
+              React + webpack + router + redux
+            </Header>
             <Content>
               <Route exact path="/" component={ContentPage} />
               <Route path="/catalogs/:type" component={ContentPage} />
