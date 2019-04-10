@@ -5,6 +5,7 @@ import { Menu, Icon, Layout } from 'antd';
 import {
   HashRouter as Router,
   Route,
+  Switch,
   Link
 } from 'react-router-dom';
 
@@ -13,7 +14,24 @@ import ContentPage from '@/pages/Content';
 const { Sider, Header, Footer, Content } = Layout;
 
 export default class DefaultLayout extends React.Component {
-  
+  state = {
+    collapsed: true,
+    menus: [
+      {
+        type: 'iOS',
+        name: 'iOS'
+      },
+      {
+        type: 'React',
+        name: 'React'
+      },
+      {
+        type: 'Flutter',
+        name: 'Flutter'
+      }
+    ]
+  }
+
   render() {
     return (
       <Router>
@@ -27,9 +45,13 @@ export default class DefaultLayout extends React.Component {
               mode="inline"
               theme="light"
             >
-              <Menu.Item key="iOS"><Link to="/catalogs/iOS"><span>iOS</span></Link></Menu.Item>
-              <Menu.Item key="React"><Link to="/catalogs/React"><span>React</span></Link></Menu.Item>
-              <Menu.Item key="Flutter"><Link to="/catalogs/Flutter"><span>Flutter</span></Link></Menu.Item>
+              {
+                this.state.menus.map(item => (
+                  <Menu.Item key={item.name} >
+                    <Link to={`/catalogs/${item.type}`}><span>{item.name}</span></Link>
+                  </Menu.Item>
+                ))
+              }
             </Menu>
           </Sider>
 
@@ -38,8 +60,10 @@ export default class DefaultLayout extends React.Component {
               React + webpack + router + redux
             </Header>
             <Content>
-              <Route exact path="/" component={ContentPage} />
-              <Route path="/catalogs/:type" component={ContentPage} />
+              <Switch>
+                <Route exact path="/" component={ContentPage} />
+                <Route path="/catalogs/:type" component={ContentPage} />
+              </Switch>
             </Content>
             <Footer style={{ textAlign: 'center' }}>
               React + webpack + router + redux
